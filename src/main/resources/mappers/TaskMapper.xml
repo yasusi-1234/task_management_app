@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.task_management_app.repository.mapper.TaskMapper">
+
+    <resultMap id="TaskResultMap" type="com.example.task_management_app.repository.domain.Task">
+        <result column="todo_id" property="todoId" />
+        <result column="rate_of_progress" property="rateOfProgress" />
+    </resultMap>
+
+    <select id="findById" parameterType="java.lang.Long" resultMap="TaskResultMap">
+        SELECT * FROM task WHERE id = #{id}
+    </select>
+
+    <select id="findByTodoId" resultMap="TaskResultMap">
+        SELECT * FROM task WHERE todo_id = #{todoId}
+    </select>
+</mapper>
