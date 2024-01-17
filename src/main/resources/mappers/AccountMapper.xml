@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.task_management_app.repository.mapper.AccountMapper">
+
+    <resultMap id="AccountResultMap" type="com.example.task_management_app.repository.domain.Account">
+        <result column="mail_address" property="mailAddress"/>
+        <result column="user_name" property="userName"/>
+        <result column="full_name" property="fullName"/>
+    </resultMap>
+
+    <resultMap id="AccountAndTodoResultMap" type="com.example.task_management_app.repository.domain.Account">
+        <id property="id" column="account_id"/>
+        <result column="mail_address" property="mailAddress"/>
+        <result column="user_name" property="userName"/>
+        <result column="full_name" property="fullName"/>
+        <result column="password" property="password"/>
+
+        <collection property="todos"
+                    ofType="com.example.task_management_app.repository.domain.Todo"
+                    resultMap="todoResultMap"/>
+    </resultMap>
+
+    <resultMap id="todoResultMap" type="com.example.task_management_app.repository.domain.Todo">
+        <id property="id" column="todo_id"/>
+        <result column="owner_id" property="ownerId"/>
+        <result column="title" property="title"/>
+        <result column="detail" property="detail"/>
+        <result column="deadline" property="deadline"/>
+        <result column="done" property="done"/>
+        <result column="importance" property="importance"/>
+        <collection property="tasks"
+                    ofType="com.example.task_management_app.repository.domain.Task"
+                    resultMap="taskResultMap"/>
+    </resultMap>
+
+    <resultMap id="taskResultMap" type="com.example.task_management_app.repository.domain.Task">
+        <id property="id" column="task_id"/>
+        <result column="todo_id" property="todoId"/>
+        <result column="title" property="title"/>
+        <result column="detail" property="detail"/>
+        <result column="deadline" property="deadline"/>
+        <result column="done" property="done"/>
+    </resultMap>
+
+    <select id="findById" parameterType="java.lang.Long" resultMap="AccountResultMap">
+        SELECT * FROM account WHERE id = #{id}
+    </select>
+
+    <select id="findAllAccount" resultMap="AccountResultMap">
+        SELECT * FROM account
+    </select>
+
+    <select id="findAllAccountTodos" resultMap="AccountAndTodoResultMap">
+        SELECT a.id as account_id, a.mail_address, a.user_name, a.full_name, a.password,
+        t.id as todo_id, t.owner_id, t.title, t.detail, t.deadline, t.done, t.importance,ta.id as task_id,
+        ta.todo_id,ta.title,ta.detail,ta.deadline,ta.rete_of_progress,ta.done
+        FROM account a INNER JOIN
+        todo t ON a.id = t.owner_id
+        INNER JOIN task ta ON t.id = ta.todo_id
+        WHERE a.id = #{id};
+    </select>
+
+    <insert id="insertAccount" parameterType="com.example.task_management_app.controller.form.AccountForm"
+            useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO account (user_name, mail_address, full_name, password, is_delete)
+        VALUES (#{userName}, #{mailAddress}, #{fullName}, #{password}, #{isDelete})
+    </insert>
+
+    <update id="updateAccount" parameterType="com.example.task_management_app.controller.form.AccountForm">
+        UPDATE account SET user_name = #{userName}, mail_address = #{mailAddress}, full_name = #{fullName},
+        password = #{password}, is_delete = #{isDelete} WHERE id = #{id}
+    </update>
+</mapper>
