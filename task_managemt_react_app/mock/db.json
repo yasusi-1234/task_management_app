@@ -1,0 +1,86 @@
+{
+    "todos":[
+      {
+        "id" : 1,
+        "ownerId" : 1,
+        "title" : "javaの学習",
+        "detail" : "javaの基礎の学習",
+        "deadline" : "2024-07-01 12:00:00",
+        "importance" : "中",
+        "done" : false,
+        "tasks" : [
+          {
+            "id" : 1,
+            "todoId" : 1,
+            "title" : "変数の概念",
+            "detail" : "変数の宣言方法",
+            "deadline" : "2024-02-15 12:00:00",
+            "rateOfProgress" : 0,
+            "importance" : "高",
+            "done" : false
+          },
+          {
+            "id" : 2,
+            "todoId" : 1,
+            "title" : "プリミティブ型の利用方法",
+            "detail" : "プリミティブ型の利用方法",
+            "deadline" : "2024-03-15 12:00:00",
+            "rateOfProgress" : 0,
+            "importance" : "中",
+            "done" : false
+          },
+          {
+            "id" : 3,
+            "todoId" : 1,
+            "title" : "クラスのインスタンス化について",
+            "detail" : "クラスのインスタンス化について",
+            "deadline" : "2024-03-15 12:00:00",
+            "rateOfProgress" : 0,
+            "importance" : "中",
+            "done" : false
+          }
+        ]
+      },
+      {
+        "id" : 2,
+        "ownerId" : 1,
+        "title" : "javascriptの学習",
+        "detail" : "javacriptの基礎の学習",
+        "deadline" : "2024-07-01 12:00:00",
+        "importance" : "中",
+        "done" : false,
+        "tasks" : [
+          {
+            "id" : 4,
+            "todoId" : 2,
+            "title" : "変数の概念",
+            "detail" : "変数の宣言方法",
+            "deadline" : "2024-02-15 12:00:00",
+            "rateOfProgress" : 0,
+            "importance" : "高",
+            "done" : false
+          },
+          {
+            "id" : 5,
+            "todoId" : 2,
+            "title" : "関数について",
+            "detail" : "関数の利用方法",
+            "deadline" : "2024-03-15 12:00:00",
+            "rateOfProgress" : 0,
+            "importance" : "高",
+            "done" : false
+          },
+          {
+            "id" : 6,
+            "todoId" : 2,
+            "title" : "DOM操作について",
+            "detail" : "DOM操作について",
+            "deadline" : "2024-03-15 12:00:00",
+            "rateOfProgress" : 0,
+            "importance" : "中",
+            "done" : false
+          }
+        ]
+      }
+    ]
+  }
