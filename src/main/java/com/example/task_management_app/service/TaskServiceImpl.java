@@ -7,4 +7,6 @@ public interface TaskServiceImpl {
     public int insertTask(TaskForm taskForm);
 
     public int updateTask(TaskForm taskForm);
+
+    public int deleteTask(long id);
 }

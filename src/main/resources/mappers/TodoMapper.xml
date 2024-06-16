@@ -26,6 +26,10 @@
         <result column="task_done" property="done"/>
     </resultMap>
 
+    <delete id="deleteTodo" parameterType="java.lang.Long">
+        DELETE FROM todo WHERE id = {#id}
+    </delete>
+
     <select id="findById" parameterType="java.lang.Long" resultMap="TodoResultMap">
         SELECT
             t.id AS todo_id,

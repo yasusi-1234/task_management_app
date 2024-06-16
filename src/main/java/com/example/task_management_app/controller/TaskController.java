@@ -36,4 +36,13 @@ public class TaskController {
 
         return ResponseEntity.status(HttpStatus.NO_CONTENT).body(taskService.updateTask(taskForm));
     }
+
+    @DeleteMapping
+    public ResponseEntity<?> deleteTask(@RequestParam(required = false) Long id){
+        System.out.println("delete task request id = " + id);
+        if (id == null) {
+            return ResponseEntity.badRequest().body("this is bad request.");
+        }
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).body(taskService.deleteTask(id));
+    }
 }

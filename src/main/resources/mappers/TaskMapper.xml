@@ -8,6 +8,10 @@
         <result column="rate_of_progress" property="rateOfProgress" />
     </resultMap>
 
+    <delete id="deleteTask" parameterType="java.lang.Long">
+        DELETE FROM task WHERE id = {#id}
+    </delete>
+
     <select id="findById" parameterType="java.lang.Long" resultMap="TaskResultMap">
         SELECT * FROM task WHERE id = #{id}
     </select>

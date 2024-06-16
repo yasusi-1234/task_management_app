@@ -24,4 +24,9 @@ public class TaskService implements TaskServiceImpl {
     public int updateTask(TaskForm taskForm) {
         return taskMapper.updateTask(taskForm);
     }
+
+    @Override
+    public int deleteTask(long id) {
+        return taskMapper.deleteTask(id);
+    }
 }

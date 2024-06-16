@@ -17,4 +17,6 @@ public interface TodoMapper {
 
     int updateTodo(TodoForm todoForm);
 
+    int deleteTodo(long id);
+
 }

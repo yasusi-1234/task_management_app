@@ -16,4 +16,6 @@ public interface TaskMapper {
     int insertTask(TaskForm taskForm);
 
     int updateTask(TaskForm taskForm);
+
+    int deleteTask(Long id);
 }

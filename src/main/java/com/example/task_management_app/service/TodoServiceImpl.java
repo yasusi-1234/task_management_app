@@ -14,4 +14,6 @@ public interface TodoServiceImpl {
     public int updateTodo(TodoForm todoForm);
 
     public int insertTodo(TodoForm todoForm);
+
+    int deleteTodo(long id);
 }

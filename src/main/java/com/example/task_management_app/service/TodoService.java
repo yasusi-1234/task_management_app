@@ -14,6 +14,10 @@ import java.util.List;
 @RequiredArgsConstructor
 @Service
 public class TodoService implements TodoServiceImpl{
+    @Override
+    public int deleteTodo(long id) {
+        return todoMapper.deleteTodo(id);
+    }
 
     @Autowired
     private final TodoMapper todoMapper;
