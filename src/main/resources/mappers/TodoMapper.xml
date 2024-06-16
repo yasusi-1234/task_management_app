@@ -4,14 +4,79 @@
 <mapper namespace="com.example.task_management_app.repository.mapper.TodoMapper">
 
     <resultMap id="TodoResultMap" type="com.example.task_management_app.repository.domain.Todo">
+        <result column="todo_id" property="id" />
         <result column="owner_id" property="ownerId" />
+        <result column="title" property="title" />
+        <result column="detail" property="detail" />
+        <result column="deadline" property="deadline" />
+        <result column="importance" property="importance" />
+        <result column="done" property="done" />
+        <collection property="tasks" ofType="com.example.task_management_app.repository.domain.Task" resultMap="taskResultMap">
+
+        </collection>
+    </resultMap>
+
+    <resultMap id="taskResultMap" type="com.example.task_management_app.repository.domain.Task">
+        <id property="id" column="task_id"/>
+        <result column="task_id" property="id"/>
+        <result column="todo_id" property="todoId"/>
+        <result column="task_title" property="title"/>
+        <result column="task_detail" property="detail"/>
+        <result column="task_deadline" property="deadline"/>
+        <result column="task_done" property="done"/>
     </resultMap>
 
     <select id="findById" parameterType="java.lang.Long" resultMap="TodoResultMap">
-        SELECT * FROM todo WHERE id = #{id}
+        SELECT
+            t.id AS todo_id,
+            t.owner_id,
+            t.title,
+            t.detail,
+            t.deadline,
+            t.importance,
+            t.done,
+            ta.id AS task_id,
+            ta.todo_id,
+            ta.title AS task_title,
+            ta.detail AS task_detail,
+            ta.deadline AS task_deadline,
+            ta.done AS task_done
+        FROM todo t
+        INNER JOIN task ta ON
+        t.id = ta.todo_id
+        WHERE t.id = #{id}
     </select>
 
     <select id="findByAccountId" resultMap="TodoResultMap">
-        SELECT * FROM todo WHERE owner_id = #{accountId}
+        SELECT
+            t.id AS todo_id,
+            t.owner_id,
+            t.title,
+            t.detail,
+            t.deadline,
+            t.importance,
+            t.done,
+            ta.id AS task_id,
+            ta.todo_id,
+            ta.title AS task_title,
+            ta.detail AS task_detail,
+            ta.deadline AS task_deadline,
+            ta.done AS task_done
+        FROM todo t
+        INNER JOIN task ta ON
+            t.id = ta.todo_id
+        WHERE t.owner_id = #{accountId}
     </select>
+
+    <insert id="insertTodo" parameterType="com.example.task_management_app.controller.form.TodoForm"
+        useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO todo(owner_id, title, detail, deadline, importance, done)
+            VALUES(#{ownerId}, #{title}, #{detail}, #{deadline}, #{importance}, #{done})
+    </insert>
+
+    <update id="updateTodo" parameterType="com.example.task_management_app.controller.form.TodoForm">
+        UPDATE todo SET owner_id = #{ownerId}, title = #{title}, detail = #{detail}, deadline = #{deadline},
+            importance = #{importance}, done = #{done} WHERE id = #{id}
+    </update>
+
 </mapper>

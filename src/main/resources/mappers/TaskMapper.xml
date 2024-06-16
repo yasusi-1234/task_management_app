@@ -15,4 +15,15 @@
     <select id="findByTodoId" resultMap="TaskResultMap">
         SELECT * FROM task WHERE todo_id = #{todoId}
     </select>
+
+    <insert id="insertTask" parameterType="com.example.task_management_app.controller.form.TaskForm"
+        useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO task(todo_id, title, detail, deadline, rate_of_progress, done)
+            VALUES(#{todoId}, #{title}, #{detail}, #{deadline}, #{rateOfProgress}, #{done})
+    </insert>
+
+    <update id="updateTask"  parameterType="com.example.task_management_app.controller.form.TaskForm">
+        UPDATE task SET todo_id = #{todoId}, title = #{title}, detail = #{detail}, deadline = #{deadline},
+            rate_of_progress = #{rateOfProgress}, done = #{done} WHERE id = #{id}
+    </update>
 </mapper>

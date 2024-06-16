@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { findAllTodos } from '../../api/todoApi'
+import { findAllTodos, findByIdTodo } from '../../api/todoApi'
 
-const initialState = await findAllTodos().then(res => res.data);
+// const initialState = await findAllTodos().then(res => res.data);
 
 const todos = createSlice({
     name: "todos",
@@ -51,9 +51,11 @@ const todos = createSlice({
 
 const asyncFindAllTodos = createAsyncThunk(
     'todos/asyncFindAllTodos',
-    async () => {
-        const todos = await findAllTodos();
+    async (id) => {
+        // const todos = await findAllTodos();
+        const todos = await findByIdTodo(id);
         console.log(todos);
+        console.log(todos.data);
         return todos.data;
     }
 );

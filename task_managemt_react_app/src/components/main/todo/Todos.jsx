@@ -30,7 +30,7 @@ const Todos = () => {
   const showTodosFilter = useSelector(state => state.backForm.showFilterBackForm);
 
   useEffect(() => {
-    dispatch(asyncFindAllTodos());
+    dispatch(asyncFindAllTodos(1));
   }, []);
 
 

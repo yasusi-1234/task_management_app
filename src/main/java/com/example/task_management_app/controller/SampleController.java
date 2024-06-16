@@ -1,6 +1,8 @@
 package com.example.task_management_app.controller;
 
 import com.example.task_management_app.controller.form.AccountForm;
+import com.example.task_management_app.controller.form.TaskForm;
+import com.example.task_management_app.controller.form.TodoForm;
 import com.example.task_management_app.repository.domain.Account;
 import com.example.task_management_app.repository.mapper.AccountMapper;
 import com.example.task_management_app.repository.mapper.TaskMapper;
@@ -9,6 +11,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
@@ -39,12 +42,7 @@ public class SampleController {
     @GetMapping("findTodo")
     public ResponseEntity<?> findTodo() {
 
-        return ResponseEntity.ok(todoMapper.findByAccountId(1L));
-    }
-    @GetMapping("findTask")
-    public ResponseEntity<?> findTask() {
-
-        return ResponseEntity.ok(taskMapper.findByTodoId(1L));
+        return ResponseEntity.ok(todoMapper.findByAccountId(1));
     }
 
     @PostMapping("account")
@@ -74,9 +72,10 @@ public class SampleController {
         }
     }
 
+
     @GetMapping("account2")
     public ResponseEntity<?> findAccount2() {
-
         return ResponseEntity.ok(accountMapper.findAllAccountTodos(1L));
     }
+
 }

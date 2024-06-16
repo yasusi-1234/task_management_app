@@ -1,12 +1,15 @@
 import axios from 'axios';
 
+const REQUEST_API_URL = "http://localhost:8080/api/";
+
 const findAllTodos = async () => {
     return await axios.get("http://localhost:4030/todos")
     .then((data) => data);
 }
 
 const findByIdTodo = async (id) => {
-    return await axios.get(`http://localhost:4030/todos/${id}`)
+    // return await axios.get(`http://localhost:4030/todos/${id}`)
+    return await axios.get(`${REQUEST_API_URL}todo?id=${id}`)
     .then(data => data);
 }
 
